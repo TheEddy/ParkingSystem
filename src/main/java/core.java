@@ -3,6 +3,6 @@
  */
 public class core {
     public static void main(String... args) {
-        System.out.println("GitHub Sync test1");
+        System.out.println("GitHub Sync test3");
     }
 }
