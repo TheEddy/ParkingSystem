@@ -8,6 +8,78 @@
     <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact"/>
     <database-model serializer="dbm" rdbms="MYSQL" format-version="2.5">
       <schema id="1" name="parkingsystem"/>
+      <table id="2" parent="1" name="carsystem"/>
+      <table id="3" parent="1" name="parkingsystem"/>
+      <column id="4" parent="2" name="car_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="5" parent="2" name="car_number">
+        <data-type>varchar(9)</data-type>
+      </column>
+      <column id="6" parent="2" name="car_accidents">
+        <data-type>tinyint(3) unsigned</data-type>
+      </column>
+      <index id="7" parent="2" name="carsystem_car_id_uindex">
+        <columns>car_id</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <index id="8" parent="2" name="carsystem_car_number_uindex">
+        <columns>car_number</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <key id="9" parent="2" name="carsystem_car_id_uindex">
+        <columns>car_id</columns>
+        <underlying-index>carsystem_car_id_uindex</underlying-index>
+      </key>
+      <key id="10" parent="2" name="carsystem_car_number_uindex">
+        <columns>car_number</columns>
+        <underlying-index>carsystem_car_number_uindex</underlying-index>
+      </key>
+      <key id="11" parent="2" name="PRIMARY">
+        <columns>car_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="12" parent="3" name="slot_id">
+        <mandatory>1</mandatory>
+        <data-type>int(10) unsigned</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="13" parent="3" name="slot_status">
+        <mandatory>1</mandatory>
+        <data-type>varchar(14)</data-type>
+      </column>
+      <column id="14" parent="3" name="slot_owner">
+        <data-type>varchar(9)</data-type>
+      </column>
+      <column id="15" parent="3" name="slot_reserv">
+        <data-type>time</data-type>
+      </column>
+      <index id="16" parent="3" name="parkingsystem_slot_id_uindex">
+        <columns>slot_id</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <index id="17" parent="3" name="parkingsystem_slot_owner_uindex">
+        <columns>slot_owner</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <key id="18" parent="3" name="parkingsystem_slot_id_uindex">
+        <columns>slot_id</columns>
+        <underlying-index>parkingsystem_slot_id_uindex</underlying-index>
+      </key>
+      <key id="19" parent="3" name="parkingsystem_slot_owner_uindex">
+        <columns>slot_owner</columns>
+        <underlying-index>parkingsystem_slot_owner_uindex</underlying-index>
+      </key>
+      <key id="20" parent="3" name="PRIMARY">
+        <columns>slot_id</columns>
+        <primary>1</primary>
+      </key>
     </database-model>
   </data-source>
 </component>
