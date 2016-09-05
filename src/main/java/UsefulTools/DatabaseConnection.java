@@ -1,3 +1,5 @@
+package UsefulTools;
+
 import com.mysql.fabric.jdbc.FabricMySQLDriver;
 
 import java.sql.*;
@@ -5,14 +7,14 @@ import java.sql.*;
 /**
  * Created by Fedor on 04.09.2016 11:13 15:31.
  */
-class DatabaseConnection {
+public class DatabaseConnection {
     private static final String URL = "jdbc:mysql://194.87.234.46:3306/parkingsystem";
     private static final String USER = "parkingdata";
     private static final String PASSWORD = "KBwfFg";
 
     private Connection connection;
 
-    DatabaseConnection() {
+    public DatabaseConnection() {
         try {
             Driver driver = new FabricMySQLDriver();
             DriverManager.registerDriver(driver);
@@ -39,7 +41,7 @@ class DatabaseConnection {
         }
     }
 
-    Connection getConnection() {
+    public Connection getConnection() {
         return connection;
     }
 }
