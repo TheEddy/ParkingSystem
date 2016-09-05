@@ -20,9 +20,9 @@ public class DatabaseConnection {
             DriverManager.registerDriver(driver);
 
             connection = DriverManager.getConnection(URL, USER, PASSWORD);
-            if (!connection.isClosed()) {
+            /*if (!connection.isClosed()) {
                 System.out.println("Соединение с БД установлено");
-            }
+            }*/
         }
 
         catch (SQLException e) {

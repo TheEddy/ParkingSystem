@@ -9,17 +9,15 @@ import java.sql.*;
  */
 public class BaseFinder {
 
-    public static void main(String... args) throws SQLException {
+    public BaseFinder(String car_number) throws SQLException {
         DatabaseConnection databaseConnection = new DatabaseConnection();
         Connection connection = databaseConnection.getConnection();
-        String search = "test";
-        search = "\"\'" + search + "\'\"";
+        String search = "\"\'" + car_number + "\'\"";
         String SELECT_NUMBER = "SELECT carsystem.* from carsystem WHERE MATCH(car_number)" +
                 " AGAINST("+ search +" IN NATURAL LANGUAGE MODE)";
         Statement statement;
         statement = connection.createStatement();
         ResultSet rs = statement.executeQuery(SELECT_NUMBER);
-        PreparedStatement SELECT = databaseConnection.getConnection().prepareStatement(SELECT_NUMBER);
         if (rs.next()) {
             Integer car_id;
             String car_numbers;
@@ -30,12 +28,10 @@ public class BaseFinder {
             car_numbers = rs.getString(2);
             car_accident = rs.getInt(3);
             System.out.println(
-                    "ID автомобиля в БД:   " +  car_id+
-                            "\nГос. Номер автомобиля:" + car_numbers+
+                    "ID автомобиля в БД:   " +  car_id +
+                            "\nГос. Номер автомобиля:" + car_numbers +
                             "\nКоличество ДТП:       " + car_accident);
-            //throw SQLOutput.
         }
-        //else throw SQL
 
     }
 
