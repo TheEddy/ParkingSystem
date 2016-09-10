@@ -1,7 +1,6 @@
 import SortingTools.BaseFinder;
 import SortingTools.BaseImporter;
 import SortingTools.BaseLastID;
-import UsefulTools.NumberGenerator;
 
 import java.sql.*;
 
@@ -12,13 +11,19 @@ import java.sql.*;
 public class core {
     public static void main(String... args) {
         String database = "carsystem";
-        String car_number = new NumberGenerator().str();
+        String car_number = "А847ВА777";
+
         try {
-            BaseFinder baseFinder = new BaseFinder(car_number);
-            Integer lastId = new BaseLastID().BaseLastID(database);
-            BaseImporter baseImporter = new BaseImporter(car_number, database);
+            boolean baseFinder = new BaseFinder().BaseFinder(car_number);
+            if (baseFinder == true) {
+                System.out.println("Этот номер найден в ДБ");
+            }
+            else {
+                //Integer lastId = new BaseLastID().BaseLastID(database);
+                BaseImporter baseImporter = new BaseImporter(car_number, database);
+            }
         } catch (SQLException e) {
-            System.err.println("Невозможно добавить данный номер в ДБ");
+            System.err.println("Ошибка в подключении к БД");
         }
     }
 }

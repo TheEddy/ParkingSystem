@@ -26,7 +26,7 @@ public class BaseImporter {
             INSERT.setInt(3, rand);
             INSERT.execute();
             System.out.println(
-                             "\nНомер " + car_number +" добавлен  в БД:                     " +
-                             "\nНомер добавлен с количеством инцидентов: " + rand + "\nПод ID:" + firstFreeID);
+                             "\nНомер " + car_number +" добавлен  в БД." +
+                             "\nНомер добавлен с количеством инцидентов: " + rand + "\nПод ID: " + firstFreeID);
         }
 }
