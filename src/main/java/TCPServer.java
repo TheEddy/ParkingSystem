@@ -24,14 +24,25 @@ class TCPServer
 
             DataOutputStream outToClient = new DataOutputStream(connectionSocket.getOutputStream());
 
-            clientSentence = inFromClient.readLine().replace("\u000E", "");
-            clientSentence = inFromClient.readLine().replace("/", "");
-            System.out.println("Получен номер: " + clientSentence);
-
-
-            capitalizedSentence = "Номер принят к записи" + '\n';
-            //outToClient.writeBytes(capitalizedSentence);
-            //outToClient.writeUTF(capitalizedSentence);
+            boolean connected = true;
+            while (connected) {
+                try {
+                    clientSentence = inFromClient.readLine().replace("\u000E", "");
+                    clientSentence = inFromClient.readLine().replace("/", "");
+                    System.out.println("Получен номер: " + clientSentence);
+                    capitalizedSentence = "Номер принят к записи" + '\n';
+                    //outToClient.writeBytes(capitalizedSentence);
+                    outToClient.writeUTF(capitalizedSentence);
+                }
+                catch (SocketException e) {
+                    connected = false;
+                }
+                finally {
+                    welcomeSocket.close();
+                    TCPServer server = new TCPServer();
+                    server.main(argv);
+                }
+            }
         }
     }
 }
