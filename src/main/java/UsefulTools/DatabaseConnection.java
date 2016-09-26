@@ -32,6 +32,7 @@ public class DatabaseConnection {
 
         finally {
             try {
+                connection.close();
                 if (connection.isClosed()) {
                     System.out.println("Соединение с БД закрыто");
                 }

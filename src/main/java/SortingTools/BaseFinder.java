@@ -11,10 +11,15 @@ public class BaseFinder {
     public static void main(String[] args){
         String database = "carsystem";
         String car_number = "В887МХ177";
-
+        try {
+            if (BaseFinder(car_number)) System.out.println("Номер содержится в БД");
+            else System.out.println("Номера нет");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
-    public boolean BaseFinder(String car_number) throws SQLException {
+    public static boolean BaseFinder(String car_number) throws SQLException {
         DatabaseConnection databaseConnection = new DatabaseConnection();
         Connection connection = databaseConnection.getConnection();
         String search = "\"\'" + car_number + "\'\"";

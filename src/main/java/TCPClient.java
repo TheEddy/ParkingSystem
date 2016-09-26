@@ -25,6 +25,7 @@ class TCPClient
                     InputStreamReader(clientSocket.getInputStream()));
 
             sentence = inFromUser.readLine();
+            if (sentence.length() != 9) sentence = sentence + '.';
             //sentence = sentence + "/";
             outToServer.writeUTF(sentence + '\n');
             //outToServer.writeBytes(sentence + '\n');

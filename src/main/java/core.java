@@ -15,7 +15,7 @@ public class core {
 
         try {
             boolean baseFinder = new BaseFinder().BaseFinder(car_number);
-            if (baseFinder == true) {
+            if (baseFinder) {
                 System.out.println("Этот номер найден в ДБ");
             }
             else {
