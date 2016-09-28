@@ -1,39 +1,40 @@
 <?php
 
 set_time_limit(0);
-$number = trim($_POST["number"]);
-$time = trim($_POST["time"]);
-$text = trim($_POST["text"]);
-$address = 'localhost';
+//$number = trim($_POST["number"]);
+//$time = trim($_POST["time"]);
+//$text = trim($_POST["text"]);
+$address = '127.0.0.1';
 $port = 6789;
 $sockets = array();
+$number = 1;
 
 if(!empty($number)) {
-  $number_bytes = utf8_encode($number);
-  if (($sock = socket_create(AF_INET, SOCK_STREAM, SOL_TCP)) === false) {
-    echo "Не удалось создать соединение: " . socket_strerror(socket_last_error()) . "\n";
-  }
-  if (socket_bind($sock, $address, $port) === false) {
-    echo "Не удалось установить адресс сервера: " . socket_strerror(socket_last_error($sock)) . "\n";
-  }
-  do {
-    if (($msgsock = socket_accept($sock)) === false) {
-      echo "socket_accept() failed: reason: " . socket_strerror(socket_last_error($sock)) . "\n";
-      break;
+    $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
+    if ($socket === false) {
+        echo "Не удалось инициализировать сокет: " . socket_strerror(socket_last_error()) . "\n";
+    } else {
+        echo "Инициализация сокета... OK.\n";
     }
-    while (true) ;
+    echo "Попытка подключения к '$address' : '$port'...";
+    $result = socket_connect($socket, $address, $port);
+    if ($result === false) {
+        echo "Подключение не удалось: ($result) " . socket_strerror(socket_last_error($socket)) . "\n";
+    } else {
+        echo "Подключение... OK.\n";
+    }
+    $number = "Р956МЕ99";
+    echo "Отправка номера...";
+    socket_write($socket, $number, strlen($number));
+    echo "Отправка произведена.\n";
+    echo "Ожидание ответа:\n\n";
+    while ($out = socket_read($socket, 2048)) {
+        echo $out;
+    }
 
-    socket_write($msgsock, $number, strlen($number));
-    echo $number;
-    socket_close($msgsock);
-  } while (true);
-socket_close($sock);
-}
-
-else{
-  echo '<script language="javascript">';
-  echo 'alert("Введите в строку номер автомобиля.")';
-  echo '</script>';
+    echo "Закрытие соединения...";
+    socket_close($socket);
+    echo "OK.\n\n";
 }
 //echo $number_bytes;
 //$host="194.87.234.46:3306";/*Имя сервера*/

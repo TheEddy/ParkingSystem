@@ -10,13 +10,18 @@ class TCPServer
 {
     public static void main(String argv[]) throws Exception
     {
+        Socket socket = null;
         String clientSentence;
         String capitalizedSentence;
         ServerSocket welcomeSocket = new ServerSocket(6789);
+        System.out.println("Server started: " + welcomeSocket);
+
+        //ServerSocket welcomeSocket = new ServerSocket(57877);
 
         while(true)
         {
             Socket connectionSocket = welcomeSocket.accept();
+            System.out.println("Client accepted: " + connectionSocket);
             Charset inputCharset = Charset.forName("UTF8");
 
             BufferedReader inFromClient =
