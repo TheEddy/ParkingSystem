@@ -23,13 +23,9 @@ if(!empty($number)) {
     } else {
         echo "Подключение... OK.\n";
     }
-    $number = "Р956МЕ99"; //Удали эту строку и расскоментируй первые 3, если собираешься работать через браузер.
-    echo "Отправка номера...\n";
-    $number_byte = utf8_encode ($number);
-    //echo $number;
-    echo $number_byte;
-    echo "\n";
-    socket_write($socket, $number_byte, strlen($number_byte)); //Процесс отправки информации. Проблема: информация не доходит.
+    $number = "Р956МЕ99";
+    echo "Отправка номера...";
+    socket_write($socket, $number, strlen($number));
     echo "Отправка произведена.\n";
     echo "Ожидание ответа:\n\n";
     while ($out = socket_read($socket, 2048)) {
