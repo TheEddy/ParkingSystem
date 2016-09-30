@@ -24,18 +24,18 @@ class TCPServer
             System.out.println("Client accepted: " + connectionSocket);
             Charset inputCharset = Charset.forName("UTF8");
 
-            System.out.println("Состояние 1");
+            //System.out.println("Состояние 1");
             BufferedReader inFromClient =
                     new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
 
-            System.out.println("Состояние 2");
+            //System.out.println("Состояние 2");
             DataOutputStream outToClient = new DataOutputStream(connectionSocket.getOutputStream());
 
-            System.out.println("Состояние 3");
+            //System.out.println("Состояние 3");
             boolean connected = true;
             while (connected) {
                 try {
-                    System.out.println("Состояние 4");
+                    //System.out.println("Состояние 4");
                     clientSentence = inFromClient.readLine();
                     /*clientSentence = inFromClient.readLine().replace("\u000E", "");
                     System.out.println("Состояние 5" + clientSentence);

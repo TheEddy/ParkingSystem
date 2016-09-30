@@ -3,7 +3,7 @@
 set_time_limit(0);
 $number = trim($_POST["number"]);
 $number = $number . PHP_EOL;
-print($number);
+//print($number);
 $time = trim($_POST["time"]);
 $text = trim($_POST["text"]);
 $address = "localhost";
