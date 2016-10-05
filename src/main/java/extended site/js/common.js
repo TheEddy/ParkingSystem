@@ -1,14 +1,18 @@
 $(document).ready(function() {
 
-	$("#subscribeForm").submit(function() {
-		$.ajax({
-			type: "POST",
-			url: "mail.php",
-			data: $(this).serialize()
-		}).done(function() {
+	$("#form").submit(function() {
+		var number = $("#subscribeForm1").find("#number").val()
+		var time = $("#subscribeForm1").find("#time").val()
+		$.get(
+			"mail.php",
+			{
+				number:number,
+				time:time
+			}
+		).done(function() {
 			$(this).find("input").val("");
-			alert("Успешно! Мы вас ждем!");
-			$("#subscribeForm").trigger("reset");
+			alert("Спасибо за заявку! Скоро мы с вами свяжемся.");
+			$("#form").trigger("reset");
 		});
 		return false;
 	});

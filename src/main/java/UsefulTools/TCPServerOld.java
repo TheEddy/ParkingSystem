@@ -1,4 +1,4 @@
-/**
+package UsefulTools; /**
  * Created by Fedor on 10.09.2016 19:03.
  */
 
@@ -6,7 +6,7 @@ import java.io.*;
 import java.net.*;
 import java.nio.charset.Charset;
 
-class TCPServer
+class TCPServerOld
 {
     public static void main(String argv[]) throws Exception
     {
@@ -52,7 +52,7 @@ class TCPServer
                 }
                 finally {
                     welcomeSocket.close();
-                    TCPServer server = new TCPServer();
+                    TCPServerOld server = new TCPServerOld();
                     server.main(argv);
                 }
             }

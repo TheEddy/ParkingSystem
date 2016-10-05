@@ -28,6 +28,7 @@ class TCPClient
             if (sentence.length() != 9) sentence = sentence + '.';
             //sentence = sentence + "/";
             outToServer.writeUTF(sentence + '\n');
+            outToServer.flush();
             //outToServer.writeBytes(sentence + '\n');
 
             modifiedSentence = inFromServer.readLine().replace("(", "");

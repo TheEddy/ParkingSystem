@@ -10,7 +10,7 @@ import java.util.Random;
 /**
  * Created by Fedor on 04.09.2016 15:43.
  */
-public class BaseNumberFiller {
+class BaseNumberFiller {
     public BaseNumberFiller(Integer count) throws SQLException {
 
         DatabaseConnection databaseConnection = new DatabaseConnection();
