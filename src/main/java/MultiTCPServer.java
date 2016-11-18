@@ -1,6 +1,8 @@
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by Fedor on 05.10.2016 19:35.
@@ -11,6 +13,8 @@ class TCPServer extends Thread implements Runnable {
     private BufferedReader inFromClient;
     private DataOutputStream outToClient;
     private static String car_number;
+    private static BaseStatus baseStatus = new BaseStatus();
+    private static ArrayList Slot_Status = baseStatus.getBaseStatus();
 
     public TCPServer(Socket s) throws IOException{
         socket = s;
@@ -21,7 +25,15 @@ class TCPServer extends Thread implements Runnable {
     }
 
     public void run(){
+        String data = Arrays.toString(Slot_Status.toArray());
+        data = data.replaceAll("[\\[]", "");
+        data = data.replaceAll("[\\]]","");
+        data = data.replaceAll(" ", "");
         try {
+            baseStatus.baseStatusUpdate();
+            //outToClient.writeBytes(data);
+            outToClient.writeUTF(data);
+            outToClient.flush();
             while(true){
                 car_number = inFromClient.readLine();
                 if(!socket.isClosed()) {

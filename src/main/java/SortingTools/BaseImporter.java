@@ -13,12 +13,13 @@ public class BaseImporter {
     public BaseImporter(String car_number, String database) throws SQLException{
 
         DatabaseConnection databaseConnection = new DatabaseConnection();
-        String NUMBER_INSERT = "INSERT INTO carsystem VALUES (?,?,?)";
+        Connection connection = databaseConnection.getConnection();
+        String NUMBER_INSERT = "INSERT INTO \"+ database +\" VALUES (?,?,?)";
 
             BaseLastID baseLastID = new BaseLastID();
             Integer lastID = baseLastID.BaseLastID(database);
             Integer firstFreeID = lastID+1;
-            PreparedStatement INSERT = databaseConnection.getConnection().prepareStatement(NUMBER_INSERT);
+            PreparedStatement INSERT = connection.prepareStatement(NUMBER_INSERT);
             Random random = new Random();
             Integer rand = random.nextInt(3);
             INSERT.setInt(1, firstFreeID);
@@ -28,5 +29,6 @@ public class BaseImporter {
             System.out.println(
                              "\nНомер " + car_number +" добавлен  в БД." +
                              "\nНомер добавлен с количеством инцидентов: " + rand + "\nПод ID: " + firstFreeID);
+        connection.close();
         }
 }

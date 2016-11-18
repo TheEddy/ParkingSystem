@@ -9,6 +9,7 @@ $port = 6789;
 $sockets = array();
 $errstr = '';
 $errno = '';
+$status;
 
 
 if(!empty($number)) {
@@ -26,6 +27,12 @@ if(!empty($number)) {
     } else {
         echo "Подключение... OK.\n";
     }
+    echo "Получения статуса мест... \n";
+    while ($out = socket_read($socket, 2048)) {
+        $status = explode(",", $out);
+        //echo $out;
+    }
+    print_r($status);
     echo "Отправка номера...\n";
     echo $number;
     echo "\n";
@@ -35,7 +42,6 @@ if(!empty($number)) {
     while ($out = socket_read($socket, 2048)) {
         echo $out;
     }
-
     echo "\nЗакрытие соединения...";
     socket_close($socket);
     echo "OK.\n\n";
