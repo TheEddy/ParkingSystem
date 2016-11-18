@@ -9,7 +9,6 @@ import java.sql.*;
  */
 public class BaseFinder {
     public static void main(String[] args){
-        String database = "carsystem";
         String car_number = "В887МХ177";
         try {
             if (BaseFinder(car_number)) System.out.println("Номер содержится в БД");
