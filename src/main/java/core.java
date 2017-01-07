@@ -20,7 +20,7 @@ public class core {
             }
             else {
                 //Integer lastId = new BaseLastID().BaseLastID(database);
-                BaseImporter baseImporter = new BaseImporter(car_number, database);
+                //BaseImporter baseImporter = new BaseImporter();
             }
         } catch (SQLException e) {
             System.err.println("Ошибка в подключении к БД");
