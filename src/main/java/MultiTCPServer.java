@@ -41,6 +41,7 @@ class TCPServer extends Thread implements Runnable {
                         setCar_number(car_number);
                         System.out.println("Номер получен: " + getCar_number());
                         outToClient.writeUTF("Номер получен: " + getCar_number());
+                        BaseStatus.baseStatusInsert(3,car_number);
                         break;
                     }
                 }
